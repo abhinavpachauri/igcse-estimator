@@ -1,0 +1,9 @@
+{
+  "code": "0475",
+  "name": "Literature in English",
+  "has_tiers": false,
+  "papers": [
+    { "paper_number": "1", "name": "Paper 1: Poetry and Prose", "tier": null, "is_ums": false, "max_raw_mark": 50, "weight_percentage": 50, "max_ums_mark": null },
+    { "paper_number": "2", "name": "Paper 2: Drama", "tier": null, "is_ums": false, "max_raw_mark": 50, "weight_percentage": 50, "max_ums_mark": null }
+  ]
+}

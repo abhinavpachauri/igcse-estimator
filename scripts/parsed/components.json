@@ -1,0 +1,1619 @@
+[
+  {
+    "syllabus_code": "0450",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0450",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0452",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 35
+  },
+  {
+    "syllabus_code": "0452",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 100
+  },
+  {
+    "syllabus_code": "0455",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 30
+  },
+  {
+    "syllabus_code": "0455",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 90
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2022,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2022,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2022,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 50
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2022,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0478",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0478",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 50
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2022,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2022,
+    "component_code": "04",
+    "paper_number": "4",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2022,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 45
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2022,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 45
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 56
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 70
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2022,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 104
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2022,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 130
+  },
+  {
+    "syllabus_code": "0606",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0606",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2022,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2022,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2022,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2022,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2022,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2022,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2022,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2022,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2022,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2022,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2022,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2022,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2022,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2022,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0450",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0450",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0452",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 35
+  },
+  {
+    "syllabus_code": "0452",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 100
+  },
+  {
+    "syllabus_code": "0455",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 30
+  },
+  {
+    "syllabus_code": "0455",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 90
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2023,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2023,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2023,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 50
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2023,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 50
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 50
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2023,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 25
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2023,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 25
+  },
+  {
+    "syllabus_code": "0478",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0478",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2023,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2023,
+    "component_code": "04",
+    "paper_number": "4",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2023,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 45
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2023,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 45
+  },
+  {
+    "syllabus_code": "0549",
+    "year": 2023,
+    "component_code": "01",
+    "paper_number": "1",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0549",
+    "year": 2023,
+    "component_code": "02",
+    "paper_number": "2",
+    "max_mark": 30
+  },
+  {
+    "syllabus_code": "0549",
+    "year": 2023,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 56
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 70
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2023,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 104
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2023,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 130
+  },
+  {
+    "syllabus_code": "0606",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0606",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2023,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2023,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2023,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2023,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2023,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2023,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2023,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2023,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2023,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2023,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2023,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2023,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2023,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2023,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2023,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2023,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2023,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2023,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0450",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0450",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0452",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 35
+  },
+  {
+    "syllabus_code": "0452",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 100
+  },
+  {
+    "syllabus_code": "0455",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 30
+  },
+  {
+    "syllabus_code": "0455",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 90
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2024,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2024,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2024,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2024,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 50
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 50
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2024,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 25
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2024,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 25
+  },
+  {
+    "syllabus_code": "0478",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0478",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2024,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2024,
+    "component_code": "04",
+    "paper_number": "4",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2024,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 45
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2024,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 45
+  },
+  {
+    "syllabus_code": "0549",
+    "year": 2024,
+    "component_code": "01",
+    "paper_number": "1",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0549",
+    "year": 2024,
+    "component_code": "02",
+    "paper_number": "2",
+    "max_mark": 30
+  },
+  {
+    "syllabus_code": "0549",
+    "year": 2024,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 56
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 70
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2024,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 104
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2024,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 130
+  },
+  {
+    "syllabus_code": "0606",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0606",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2024,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2024,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2024,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2024,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2024,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2024,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2024,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2024,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2024,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2024,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2024,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2024,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2024,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2024,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2024,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2024,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2024,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2024,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0450",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0450",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0452",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 35
+  },
+  {
+    "syllabus_code": "0452",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 100
+  },
+  {
+    "syllabus_code": "0455",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 30
+  },
+  {
+    "syllabus_code": "0455",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 90
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2025,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0460",
+    "year": 2025,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2025,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0470",
+    "year": 2025,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 50
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 50
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2025,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 25
+  },
+  {
+    "syllabus_code": "0475",
+    "year": 2025,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 25
+  },
+  {
+    "syllabus_code": "0478",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0478",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 75
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2025,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0500",
+    "year": 2025,
+    "component_code": "04",
+    "paper_number": "4",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2025,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 45
+  },
+  {
+    "syllabus_code": "0520",
+    "year": 2025,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 45
+  },
+  {
+    "syllabus_code": "0549",
+    "year": 2025,
+    "component_code": "01",
+    "paper_number": "1",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0549",
+    "year": 2025,
+    "component_code": "02",
+    "paper_number": "2",
+    "max_mark": 30
+  },
+  {
+    "syllabus_code": "0549",
+    "year": 2025,
+    "component_code": "03",
+    "paper_number": "3",
+    "max_mark": 60
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 100
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2025,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0580",
+    "year": 2025,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 100
+  },
+  {
+    "syllabus_code": "0606",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0606",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2025,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2025,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2025,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0610",
+    "year": 2025,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2025,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2025,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2025,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0620",
+    "year": 2025,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2025,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2025,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2025,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0625",
+    "year": 2025,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2025,
+    "component_code": "12",
+    "paper_number": "1",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2025,
+    "component_code": "22",
+    "paper_number": "2",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2025,
+    "component_code": "32",
+    "paper_number": "3",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2025,
+    "component_code": "42",
+    "paper_number": "4",
+    "max_mark": 80
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2025,
+    "component_code": "52",
+    "paper_number": "5",
+    "max_mark": 40
+  },
+  {
+    "syllabus_code": "0653",
+    "year": 2025,
+    "component_code": "62",
+    "paper_number": "6",
+    "max_mark": 40
+  }
+]

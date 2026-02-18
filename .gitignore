@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# pipeline raw downloads (PDFs — regenerate with pnpm pipeline:scrape)
+/scripts/raw/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
