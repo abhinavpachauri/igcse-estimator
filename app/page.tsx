@@ -11,7 +11,7 @@ const steps = [
   {
     number: '01',
     title: 'Select Subjects',
-    description: 'Choose from 17 Cambridge IGCSE subjects across sciences, mathematics, humanities, and languages.',
+    description: 'Choose from 18 Cambridge IGCSE subjects across sciences, mathematics, humanities, and languages.',
   },
   {
     number: '02',
@@ -32,7 +32,7 @@ const steps = [
 
 const metrics = [
   {
-    value: '17',
+    value: '18',
     label: 'IGCSE Subjects',
     sub: 'Across sciences, mathematics, humanities, and languages',
   },
@@ -166,7 +166,7 @@ export default function LandingPage() {
             className="flex items-center justify-center gap-8 sm:gap-12"
           >
             {[
-              { value: '17', label: 'subjects' },
+              { value: '18', label: 'subjects' },
               { value: '5 yrs', label: 'boundary data' },
               { value: 'FM', label: 'series only' },
             ].map((stat, i) => (
@@ -498,7 +498,7 @@ export default function LandingPage() {
                 </div>
                 <div className="space-y-3">
                   <div className="text-sm" style={{ color: '#888', fontFamily: 'var(--font-sans)' }}>
-                    17 IGCSE subjects
+                    18 IGCSE subjects
                   </div>
                   <div className="text-sm" style={{ color: '#888', fontFamily: 'var(--font-sans)' }}>
                     FM series 2021–2025
