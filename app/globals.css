@@ -188,6 +188,28 @@ h1, h2, h3, h4 {
   border: 1px solid #2A2A2A;
 }
 
+/* ─── Background Blob Morph Animations ──────────────────────────────────── */
+
+@keyframes blob-morph-gold {
+  0%, 100% { border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%; }
+  25%       { border-radius: 40% 60% 35% 65% / 55% 40% 60% 45%; }
+  50%       { border-radius: 55% 45% 65% 35% / 45% 60% 40% 55%; }
+  75%       { border-radius: 35% 65% 50% 50% / 60% 40% 55% 45%; }
+}
+
+@keyframes blob-morph-blue {
+  0%, 100% { border-radius: 40% 60% 30% 70% / 55% 35% 65% 45%; }
+  25%       { border-radius: 65% 35% 55% 45% / 40% 60% 35% 65%; }
+  50%       { border-radius: 30% 70% 60% 40% / 65% 35% 50% 50%; }
+  75%       { border-radius: 55% 45% 40% 60% / 35% 65% 55% 45%; }
+}
+
+@keyframes blob-morph-amber {
+  0%, 100% { border-radius: 50% 50% 35% 65% / 40% 60% 45% 55%; }
+  33%       { border-radius: 35% 65% 55% 45% / 60% 40% 55% 45%; }
+  66%       { border-radius: 65% 35% 45% 55% / 45% 55% 35% 65%; }
+}
+
 /* ─── Gold Divider ───────────────────────────────────────────────────────── */
 
 .gold-divider {
