@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { GradeCard } from '@/components/results/GradeCard'
 import { Button } from '@/components/ui'
 import { getOrCreateSessionId } from '@/lib/utils/session'
+import { createClient } from '@/lib/supabase/client'
 import type { EstimateResult, SubjectEstimateInput } from '@/types'
 
 interface StoredEstimate {
@@ -19,19 +20,17 @@ export default function ResultsPage() {
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
     const raw = sessionStorage.getItem('estimate_result')
-    if (!raw) {
-      router.push('/estimate')
-      return
-    }
-    try {
-      setData(JSON.parse(raw))
-    } catch {
-      router.push('/estimate')
-    }
+    if (!raw) { router.push('/estimate'); return }
+    try { setData(JSON.parse(raw)) } catch { router.push('/estimate') }
+
+    createClient().auth.getUser().then(({ data: { user } }) => {
+      setIsLoggedIn(!!user)
+    })
   }, [router])
 
   async function saveEstimate() {
@@ -93,14 +92,17 @@ export default function ResultsPage() {
           {!saved ? (
             <Button
               size="sm"
-              variant="outline"
+              variant="primary"
               loading={saving}
               onClick={saveEstimate}
             >
               Save results
             </Button>
           ) : (
-            <span className="text-sm" style={{ color: '#4CAF78', fontFamily: 'var(--font-sans)' }}>
+            <span className="text-sm flex items-center gap-1.5" style={{ color: '#4CAF78', fontFamily: 'var(--font-sans)' }}>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7L5.5 10L11.5 4" stroke="#4CAF78" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
               Saved
             </span>
           )}
@@ -161,14 +163,18 @@ export default function ResultsPage() {
           </p>
         )}
 
-        {/* Guest login prompt */}
-        {!saved && (
+        {/* Guest prompt — only shown if NOT logged in and not yet saved */}
+        {!isLoggedIn && !saved && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="mt-8 p-5 rounded-sm border text-center"
-            style={{ background: '#141414', borderColor: '#2A2A2A' }}
+            style={{
+              background: 'linear-gradient(160deg, #181818 0%, #141414 100%)',
+              borderColor: '#2A2A2A',
+              boxShadow: '0 1px 0 rgba(255,255,255,0.03) inset',
+            }}
           >
             <p className="text-sm mb-3" style={{ color: '#888', fontFamily: 'var(--font-sans)' }}>
               Create an account to save and track your estimates over time.

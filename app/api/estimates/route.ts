@@ -13,7 +13,7 @@ export async function GET(req: Request) {
   let query = supabase
     .from('saved_estimates')
     .select(`
-      id, label, created_at,
+      id, label, created_at, result,
       estimate_entries (
         id, subject_id, tier_selected, paper_marks,
         subjects ( syllabus_code, name )
