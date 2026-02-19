@@ -21,16 +21,27 @@ export default function SignupPage() {
     setLoading(true)
     setError(null)
 
-    const supabase = createClient()
-
-    const { error: signupError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { data: { display_name: name } },
+    // Step 1: create the user server-side (email pre-confirmed, no inbox required)
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password, name }),
     })
 
-    if (signupError) {
-      setError(signupError.message)
+    const body = await res.json()
+
+    if (!res.ok) {
+      setError(body.error ?? 'Something went wrong. Please try again.')
+      setLoading(false)
+      return
+    }
+
+    // Step 2: sign in to establish the session cookie
+    const supabase = createClient()
+    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
+
+    if (signInError) {
+      setError(signInError.message)
       setLoading(false)
       return
     }
