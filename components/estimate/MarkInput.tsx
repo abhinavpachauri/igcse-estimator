@@ -18,10 +18,10 @@ export function MarkInput() {
     <div className="flex flex-col gap-6">
       <div>
         <h2 className="font-display text-3xl font-light mb-2" style={{ color: '#F5F5F0' }}>
-          Enter your marks
+          Enter your estimated marks
         </h2>
         <p className="text-sm" style={{ color: '#888', fontFamily: 'var(--font-sans)' }}>
-          Enter your raw mark for each paper. Marks are weighted automatically.
+          Enter your estimated raw mark for each paper. Marks are weighted automatically.
         </p>
       </div>
 
@@ -57,7 +57,7 @@ export function MarkInput() {
                         type="number"
                         min={0}
                         max={paper.max_raw_mark}
-                        value={markValue ?? ''}
+                        value={markValue === undefined || markValue < 0 ? '' : markValue}
                         onChange={(e) => {
                           const val = e.target.value === '' ? -1 : parseInt(e.target.value, 10)
                           setMark(ss.subject.id, paper.id, val)
