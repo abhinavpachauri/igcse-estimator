@@ -33,7 +33,11 @@ export function PaperSelector() {
 
   const canContinue = selectedSubjects.every((s) => {
     if (s.subject.has_tiers && !s.tier) return false
-    return s.selectedPapers.length > 0
+    const papers = papersBySubject[s.subject.id] ?? []
+    const availablePapers = s.subject.has_tiers && s.tier
+      ? papers.filter((p) => p.tier === s.tier)
+      : papers
+    return availablePapers.length > 0 && s.selectedPapers.length === availablePapers.length
   })
 
   if (loading) {
@@ -96,19 +100,29 @@ export function PaperSelector() {
                     {ss.subject.name}
                   </div>
                 </div>
-                {ss.selectedPapers.length > 0 && (
-                  <div
-                    className="text-xs px-2.5 py-1 rounded-sm flex-shrink-0"
-                    style={{
-                      background: 'rgba(76,175,120,0.1)',
-                      border: '1px solid rgba(76,175,120,0.2)',
-                      color: '#4CAF78',
-                      fontFamily: 'var(--font-sans)',
-                    }}
-                  >
-                    {ss.selectedPapers.length} selected
-                  </div>
-                )}
+                {(() => {
+                  const papers = papersBySubject[ss.subject.id] ?? []
+                  const availablePapers = ss.subject.has_tiers && ss.tier
+                    ? papers.filter((p) => p.tier === ss.tier)
+                    : papers
+                  const total = availablePapers.length
+                  const selected = ss.selectedPapers.length
+                  if (total === 0) return null
+                  const allSelected = selected === total
+                  return (
+                    <div
+                      className="text-xs px-2.5 py-1 rounded-sm flex-shrink-0"
+                      style={{
+                        background: allSelected ? 'rgba(76,175,120,0.1)' : 'rgba(201,169,110,0.08)',
+                        border: `1px solid ${allSelected ? 'rgba(76,175,120,0.2)' : 'rgba(201,169,110,0.2)'}`,
+                        color: allSelected ? '#4CAF78' : '#C9A96E',
+                        fontFamily: 'var(--font-sans)',
+                      }}
+                    >
+                      {selected} / {total} papers
+                    </div>
+                  )
+                })()}
               </div>
 
               {/* Tier selection */}
