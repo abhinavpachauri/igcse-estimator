@@ -15,6 +15,19 @@ interface StoredEstimate {
   entries: SubjectEstimateInput[]
 }
 
+const GRADE_ORDER = ['A*', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'U']
+
+function gradeColor(grade: string | null): string {
+  if (!grade) return '#555'
+  switch (grade) {
+    case 'A*': return '#C9A96E'
+    case 'A':  return '#B8C9A9'
+    case 'B':  return '#A9B8C9'
+    case 'C':  return '#C9B8A9'
+    default:   return '#888'
+  }
+}
+
 export default function ResultsPage() {
   const [data, setData] = useState<StoredEstimate | null>(null)
   const [saving, setSaving] = useState(false)
@@ -72,20 +85,41 @@ export default function ResultsPage() {
     return acc
   }, {})
 
+  const sortedGrades = Object.entries(gradeCount).sort(([a], [b]) =>
+    GRADE_ORDER.indexOf(a) - GRADE_ORDER.indexOf(b)
+  )
+
+  const avgWeighted = result.entries.length > 0
+    ? result.entries.reduce((s, e) => s + (e.weighted_total_pct ?? 0), 0) / result.entries.length
+    : 0
+
   return (
-    <main className="min-h-screen" style={{ background: '#0C0C0C' }}>
+    <main className="min-h-screen relative" style={{ background: '#0C0C0C' }}>
+      {/* Ambient glow */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 80% 40% at 50% 0%, rgba(201,169,110,0.04) 0%, transparent 60%)',
+          zIndex: 0,
+        }}
+      />
+
       {/* Nav */}
       <nav
-        className="flex items-center justify-between px-8 py-5"
+        className="sticky top-0 z-50 flex items-center justify-between px-8 py-4"
         style={{
           borderBottom: '1px solid rgba(30,30,30,0.8)',
-          background: 'rgba(12,12,12,0.8)',
+          background: 'rgba(12,12,12,0.9)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           boxShadow: '0 1px 0 rgba(255,255,255,0.03) inset',
         }}
       >
-        <Link href="/dashboard" className="font-display text-lg tracking-wide" style={{ color: '#F5F5F0' }}>
+        <Link
+          href={isLoggedIn ? '/dashboard' : '/'}
+          className="font-display text-xl tracking-wide transition-opacity hover:opacity-70"
+          style={{ color: '#F5F5F0' }}
+        >
           Threshold
         </Link>
         <div className="flex items-center gap-3">
@@ -112,7 +146,7 @@ export default function ResultsPage() {
         </div>
       </nav>
 
-      <div className="max-w-3xl mx-auto px-8 py-12">
+      <div className="max-w-3xl mx-auto px-8 py-12 relative z-10">
         {/* Summary header */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -123,30 +157,50 @@ export default function ResultsPage() {
           <div className="text-xs tracking-[0.25em] uppercase mb-3" style={{ color: '#C9A96E', fontFamily: 'var(--font-sans)' }}>
             Grade Estimate
           </div>
-          <h1 className="font-display text-4xl md:text-5xl font-light mb-2" style={{ color: '#F5F5F0' }}>
+          <h1 className="font-display text-4xl md:text-5xl font-light mb-6" style={{ color: '#F5F5F0' }}>
             {result.entries.length} subject{result.entries.length !== 1 ? 's' : ''} estimated
           </h1>
-          <div className="flex items-center gap-3 flex-wrap mt-4">
-            {Object.entries(gradeCount)
-              .sort(([a], [b]) => {
-                const order = ['A*', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'U']
-                return order.indexOf(a) - order.indexOf(b)
-              })
-              .map(([grade, count]) => (
+
+          {/* Grade breakdown bar */}
+          <div
+            className="p-5 rounded-sm border"
+            style={{
+              background: 'linear-gradient(135deg, #181818 0%, #141414 100%)',
+              borderColor: '#2A2A2A',
+              boxShadow: '0 1px 0 rgba(255,255,255,0.03) inset, 0 4px 16px rgba(0,0,0,0.3)',
+            }}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div className="text-xs uppercase tracking-widest" style={{ color: '#555', fontFamily: 'var(--font-sans)' }}>
+                Grade breakdown
+              </div>
+              <div className="text-xs" style={{ color: '#555', fontFamily: 'var(--font-sans)' }}>
+                Avg weighted: <span style={{ color: '#C9A96E' }}>{avgWeighted.toFixed(1)}%</span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              {sortedGrades.map(([grade, count]) => (
                 <div
                   key={grade}
-                  className="flex items-center gap-1.5 text-sm px-3 py-1 rounded-sm border"
+                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-sm border"
                   style={{
                     fontFamily: 'var(--font-sans)',
-                    background: 'rgba(201,169,110,0.05)',
+                    background: 'rgba(255,255,255,0.02)',
                     borderColor: '#2A2A2A',
-                    color: '#A8A8A8',
                   }}
                 >
-                  <span className="font-display text-base" style={{ color: '#C9A96E' }}>{grade}</span>
-                  <span>×{count}</span>
+                  <div
+                    className="w-2 h-2 rounded-full flex-shrink-0"
+                    style={{ background: gradeColor(grade) }}
+                  />
+                  <span className="font-display text-lg" style={{ color: gradeColor(grade) }}>
+                    {grade}
+                  </span>
+                  <span className="text-sm" style={{ color: '#555' }}>×{count}</span>
                 </div>
               ))}
+            </div>
           </div>
         </motion.div>
 
@@ -163,20 +217,23 @@ export default function ResultsPage() {
           </p>
         )}
 
-        {/* Guest prompt — only shown if NOT logged in and not yet saved */}
+        {/* Guest prompt */}
         {!isLoggedIn && !saved && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="mt-8 p-5 rounded-sm border text-center"
+            className="mt-8 p-6 rounded-sm border text-center"
             style={{
               background: 'linear-gradient(160deg, #181818 0%, #141414 100%)',
               borderColor: '#2A2A2A',
               boxShadow: '0 1px 0 rgba(255,255,255,0.03) inset',
             }}
           >
-            <p className="text-sm mb-3" style={{ color: '#888', fontFamily: 'var(--font-sans)' }}>
+            <div className="font-display text-lg mb-2" style={{ color: '#F5F5F0' }}>
+              Save your results
+            </div>
+            <p className="text-sm mb-4" style={{ color: '#888', fontFamily: 'var(--font-sans)' }}>
               Create an account to save and track your estimates over time.
             </p>
             <div className="flex items-center justify-center gap-3">

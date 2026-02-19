@@ -16,9 +16,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'IGCSE Grade Estimator',
+  title: 'Threshold — IGCSE Grade Estimator',
   description:
-    'Estimate your Cambridge IGCSE grades based on historical grade boundaries from the past five years.',
+    'Estimate your Cambridge IGCSE grades based on five years of historical grade boundary data from the February/March series.',
 }
 
 export default function RootLayout({
