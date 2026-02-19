@@ -10,6 +10,26 @@ interface SubjectPapers {
   [subjectId: string]: Paper[]
 }
 
+function getAvailablePapers(papers: Paper[], hasTiers: boolean, tier: Tier | null): Paper[] {
+  if (hasTiers && tier) return papers.filter((p) => p.tier === tier)
+  if (hasTiers && !tier) return []
+  return papers
+}
+
+function getSubjectReadiness(selectedPaperIds: Set<string>, availablePapers: Paper[]) {
+  const compulsory = availablePapers.filter((p) => !p.paper_group)
+  const groups = [...new Set(availablePapers.filter((p) => p.paper_group).map((p) => p.paper_group!))]
+
+  const required = compulsory.length + groups.length
+  const compulsoryMet = compulsory.filter((p) => selectedPaperIds.has(p.id)).length
+  const groupsMet = groups.filter(
+    (g) => availablePapers.filter((p) => p.paper_group === g && selectedPaperIds.has(p.id)).length === 1
+  ).length
+  const satisfied = compulsoryMet + groupsMet
+
+  return { required, satisfied, complete: required > 0 && satisfied === required }
+}
+
 export function PaperSelector() {
   const { selectedSubjects, setTier, togglePaper, setStep } = useEstimate()
   const [papersBySubject, setPapersBySubject] = useState<SubjectPapers>({})
@@ -34,10 +54,9 @@ export function PaperSelector() {
   const canContinue = selectedSubjects.every((s) => {
     if (s.subject.has_tiers && !s.tier) return false
     const papers = papersBySubject[s.subject.id] ?? []
-    const availablePapers = s.subject.has_tiers && s.tier
-      ? papers.filter((p) => p.tier === s.tier)
-      : papers
-    return availablePapers.length > 0 && s.selectedPapers.length === availablePapers.length
+    const available = getAvailablePapers(papers, s.subject.has_tiers, s.tier)
+    const selectedIds = new Set(s.selectedPapers.map((p) => p.id))
+    return getSubjectReadiness(selectedIds, available).complete
   })
 
   if (loading) {
@@ -71,11 +90,12 @@ export function PaperSelector() {
       <div className="space-y-5">
         {selectedSubjects.map((ss, i) => {
           const papers = papersBySubject[ss.subject.id] ?? []
-          const availablePapers = ss.subject.has_tiers && ss.tier
-            ? papers.filter((p) => p.tier === ss.tier)
-            : ss.subject.has_tiers
-            ? []
-            : papers
+          const availablePapers = getAvailablePapers(papers, ss.subject.has_tiers, ss.tier)
+          const selectedIds = new Set(ss.selectedPapers.map((p) => p.id))
+          const { required, satisfied, complete } = getSubjectReadiness(selectedIds, availablePapers)
+
+          const compulsoryPapers = availablePapers.filter((p) => !p.paper_group)
+          const groups = [...new Set(availablePapers.filter((p) => p.paper_group).map((p) => p.paper_group!))]
 
           return (
             <motion.div
@@ -100,29 +120,19 @@ export function PaperSelector() {
                     {ss.subject.name}
                   </div>
                 </div>
-                {(() => {
-                  const papers = papersBySubject[ss.subject.id] ?? []
-                  const availablePapers = ss.subject.has_tiers && ss.tier
-                    ? papers.filter((p) => p.tier === ss.tier)
-                    : papers
-                  const total = availablePapers.length
-                  const selected = ss.selectedPapers.length
-                  if (total === 0) return null
-                  const allSelected = selected === total
-                  return (
-                    <div
-                      className="text-xs px-2.5 py-1 rounded-sm flex-shrink-0"
-                      style={{
-                        background: allSelected ? 'rgba(76,175,120,0.1)' : 'rgba(201,169,110,0.08)',
-                        border: `1px solid ${allSelected ? 'rgba(76,175,120,0.2)' : 'rgba(201,169,110,0.2)'}`,
-                        color: allSelected ? '#4CAF78' : '#C9A96E',
-                        fontFamily: 'var(--font-sans)',
-                      }}
-                    >
-                      {selected} / {total} papers
-                    </div>
-                  )
-                })()}
+                {required > 0 && (
+                  <div
+                    className="text-xs px-2.5 py-1 rounded-sm flex-shrink-0"
+                    style={{
+                      background: complete ? 'rgba(76,175,120,0.1)' : 'rgba(201,169,110,0.08)',
+                      border: `1px solid ${complete ? 'rgba(76,175,120,0.2)' : 'rgba(201,169,110,0.2)'}`,
+                      color: complete ? '#4CAF78' : '#C9A96E',
+                      fontFamily: 'var(--font-sans)',
+                    }}
+                  >
+                    {satisfied} / {required} required
+                  </div>
+                )}
               </div>
 
               {/* Tier selection */}
@@ -156,59 +166,69 @@ export function PaperSelector() {
 
               {/* Papers */}
               {availablePapers.length > 0 ? (
-                <div>
-                  <div className="text-xs uppercase tracking-widest mb-3" style={{ color: '#555', fontFamily: 'var(--font-sans)' }}>
-                    Papers
-                  </div>
-                  <div className="space-y-2">
-                    {availablePapers.map((paper) => {
-                      const isSelected = ss.selectedPapers.some((p) => p.id === paper.id)
-                      return (
-                        <button
-                          key={paper.id}
-                          onClick={() => togglePaper(ss.subject.id, paper)}
-                          className="w-full text-left px-4 py-3.5 rounded-sm border flex items-center justify-between transition-all duration-200 cursor-pointer group"
-                          style={{
-                            background: isSelected ? 'rgba(201,169,110,0.05)' : 'rgba(255,255,255,0.02)',
-                            borderColor: isSelected ? 'rgba(201,169,110,0.3)' : '#2A2A2A',
-                            borderLeft: isSelected ? '2px solid #C9A96E' : '2px solid transparent',
-                          }}
-                        >
-                          <div>
-                            <div
-                              className="text-sm"
-                              style={{
-                                color: isSelected ? '#F5F5F0' : '#A8A8A8',
-                                fontFamily: 'var(--font-sans)',
-                              }}
-                            >
-                              {paper.name}
-                            </div>
-                            <div
-                              className="text-xs mt-0.5"
-                              style={{ color: isSelected ? 'rgba(201,169,110,0.6)' : '#555', fontFamily: 'var(--font-sans)' }}
-                            >
-                              Max {paper.max_raw_mark} marks · {paper.weight_percentage}% weight
-                            </div>
+                <div className="space-y-4">
+                  {/* Compulsory papers */}
+                  {compulsoryPapers.length > 0 && (
+                    <div>
+                      <div className="text-xs uppercase tracking-widest mb-3" style={{ color: '#555', fontFamily: 'var(--font-sans)' }}>
+                        Papers
+                      </div>
+                      <div className="space-y-2">
+                        {compulsoryPapers.map((paper) => {
+                          const isSelected = selectedIds.has(paper.id)
+                          return (
+                            <PaperButton
+                              key={paper.id}
+                              paper={paper}
+                              isSelected={isSelected}
+                              isRadio={false}
+                              onClick={() => togglePaper(ss.subject.id, paper, availablePapers)}
+                            />
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Grouped papers */}
+                  {groups.map((group) => {
+                    const groupPapers = availablePapers.filter((p) => p.paper_group === group)
+                    const groupLabel = group === 'practical' ? 'Practical component' : 'Coursework component'
+                    return (
+                      <div key={group}>
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="text-xs uppercase tracking-widest" style={{ color: '#555', fontFamily: 'var(--font-sans)' }}>
+                            {groupLabel}
                           </div>
                           <div
-                            className="w-5 h-5 rounded-sm border flex items-center justify-center flex-shrink-0 transition-all duration-200 ml-3"
+                            className="text-xs px-2 py-0.5 rounded-sm"
                             style={{
-                              borderColor: isSelected ? '#C9A96E' : '#2A2A2A',
-                              background: isSelected ? '#C9A96E' : 'transparent',
-                              boxShadow: isSelected ? '0 0 8px rgba(201,169,110,0.3)' : 'none',
+                              background: 'rgba(201,169,110,0.06)',
+                              border: '1px solid rgba(201,169,110,0.15)',
+                              color: '#C9A96E',
+                              fontFamily: 'var(--font-sans)',
                             }}
                           >
-                            {isSelected && (
-                              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                                <path d="M1 4L3.5 6.5L9 1" stroke="#0C0C0C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                            )}
+                            choose one
                           </div>
-                        </button>
-                      )
-                    })}
-                  </div>
+                        </div>
+                        <div className="space-y-2">
+                          {groupPapers.map((paper) => {
+                            const isSelected = selectedIds.has(paper.id)
+                            return (
+                              <PaperButton
+                                key={paper.id}
+                                paper={paper}
+                                isSelected={isSelected}
+                                isRadio={true}
+                                onClick={() => togglePaper(ss.subject.id, paper, availablePapers)}
+                              />
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               ) : ss.subject.has_tiers && !ss.tier ? (
                 <p className="text-sm py-3" style={{ color: '#555', fontFamily: 'var(--font-sans)' }}>
@@ -229,5 +249,72 @@ export function PaperSelector() {
         </Button>
       </div>
     </div>
+  )
+}
+
+interface PaperButtonProps {
+  paper: Paper
+  isSelected: boolean
+  isRadio: boolean
+  onClick: () => void
+}
+
+function PaperButton({ paper, isSelected, isRadio, onClick }: PaperButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className="w-full text-left px-4 py-3.5 rounded-sm border flex items-center justify-between transition-all duration-200 cursor-pointer group"
+      style={{
+        background: isSelected ? 'rgba(201,169,110,0.05)' : 'rgba(255,255,255,0.02)',
+        borderColor: isSelected ? 'rgba(201,169,110,0.3)' : '#2A2A2A',
+        borderLeft: isSelected ? '2px solid #C9A96E' : '2px solid transparent',
+      }}
+    >
+      <div>
+        <div
+          className="text-sm"
+          style={{
+            color: isSelected ? '#F5F5F0' : '#A8A8A8',
+            fontFamily: 'var(--font-sans)',
+          }}
+        >
+          {paper.name}
+        </div>
+        <div
+          className="text-xs mt-0.5"
+          style={{ color: isSelected ? 'rgba(201,169,110,0.6)' : '#555', fontFamily: 'var(--font-sans)' }}
+        >
+          Max {paper.max_raw_mark} marks · {paper.weight_percentage}% weight
+        </div>
+      </div>
+      {/* Checkbox or radio indicator */}
+      {isRadio ? (
+        <div
+          className="w-5 h-5 rounded-full border flex items-center justify-center flex-shrink-0 transition-all duration-200 ml-3"
+          style={{
+            borderColor: isSelected ? '#C9A96E' : '#2A2A2A',
+            background: isSelected ? '#C9A96E' : 'transparent',
+            boxShadow: isSelected ? '0 0 8px rgba(201,169,110,0.3)' : 'none',
+          }}
+        >
+          {isSelected && <div className="w-2 h-2 rounded-full" style={{ background: '#0C0C0C' }} />}
+        </div>
+      ) : (
+        <div
+          className="w-5 h-5 rounded-sm border flex items-center justify-center flex-shrink-0 transition-all duration-200 ml-3"
+          style={{
+            borderColor: isSelected ? '#C9A96E' : '#2A2A2A',
+            background: isSelected ? '#C9A96E' : 'transparent',
+            boxShadow: isSelected ? '0 0 8px rgba(201,169,110,0.3)' : 'none',
+          }}
+        >
+          {isSelected && (
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="#0C0C0C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          )}
+        </div>
+      )}
+    </button>
   )
 }

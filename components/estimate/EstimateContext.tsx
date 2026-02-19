@@ -17,7 +17,7 @@ interface EstimateContextValue {
   addSubject: (subject: Subject) => void
   removeSubject: (subjectId: string) => void
   setTier: (subjectId: string, tier: Tier | null) => void
-  togglePaper: (subjectId: string, paper: Paper) => void
+  togglePaper: (subjectId: string, paper: Paper, allAvailablePapers?: Paper[]) => void
   setMark: (subjectId: string, paperId: string, mark: number) => void
   buildPayload: () => SubjectEstimateInput[]
   reset: () => void
@@ -50,16 +50,28 @@ export function EstimateProvider({ children }: { children: ReactNode }) {
     )
   }
 
-  function togglePaper(subjectId: string, paper: Paper) {
+  function togglePaper(subjectId: string, paper: Paper, allAvailablePapers?: Paper[]) {
     setSelectedSubjects((prev) =>
       prev.map((s) => {
         if (s.subject.id !== subjectId) return s
         const exists = s.selectedPapers.find((p) => p.id === paper.id)
-        const selectedPapers = exists
-          ? s.selectedPapers.filter((p) => p.id !== paper.id)
-          : [...s.selectedPapers, paper]
+        let selectedPapers = [...s.selectedPapers]
         const marks = { ...s.marks }
-        if (exists) delete marks[paper.id]
+        if (exists) {
+          selectedPapers = selectedPapers.filter((p) => p.id !== paper.id)
+          delete marks[paper.id]
+        } else {
+          // If this paper belongs to a group, deselect others in the same group first
+          if (paper.paper_group && allAvailablePapers) {
+            for (const gp of allAvailablePapers) {
+              if (gp.paper_group === paper.paper_group && gp.id !== paper.id) {
+                selectedPapers = selectedPapers.filter((p) => p.id !== gp.id)
+                delete marks[gp.id]
+              }
+            }
+          }
+          selectedPapers = [...selectedPapers, paper]
+        }
         return { ...s, selectedPapers, marks }
       })
     )

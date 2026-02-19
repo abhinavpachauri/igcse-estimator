@@ -3,13 +3,13 @@
   "name": "Biology",
   "has_tiers": true,
   "papers": [
-    { "paper_number": "1", "name": "Paper 1: Multiple Choice (Core)", "tier": "Core", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 30, "max_ums_mark": null },
-    { "paper_number": "3", "name": "Paper 3: Core Theory", "tier": "Core", "is_ums": false, "max_raw_mark": 80, "weight_percentage": 50, "max_ums_mark": null },
-    { "paper_number": "5", "name": "Paper 5: Practical Test (Core)", "tier": "Core", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 20, "max_ums_mark": null },
-    { "paper_number": "6", "name": "Paper 6: Alternative to Practical (Core)", "tier": "Core", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 20, "max_ums_mark": null },
-    { "paper_number": "2", "name": "Paper 2: Multiple Choice (Extended)", "tier": "Extended", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 30, "max_ums_mark": null },
-    { "paper_number": "4", "name": "Paper 4: Extended Theory", "tier": "Extended", "is_ums": false, "max_raw_mark": 80, "weight_percentage": 50, "max_ums_mark": null },
-    { "paper_number": "5", "name": "Paper 5: Practical Test (Extended)", "tier": "Extended", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 20, "max_ums_mark": null },
-    { "paper_number": "6", "name": "Paper 6: Alternative to Practical (Extended)", "tier": "Extended", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 20, "max_ums_mark": null }
+    { "paper_number": "1", "name": "Paper 1: Multiple Choice (Core)", "tier": "Core", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 30, "max_ums_mark": null, "paper_group": null },
+    { "paper_number": "3", "name": "Paper 3: Core Theory", "tier": "Core", "is_ums": false, "max_raw_mark": 80, "weight_percentage": 50, "max_ums_mark": null, "paper_group": null },
+    { "paper_number": "5", "name": "Paper 5: Practical Test (Core)", "tier": "Core", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 20, "max_ums_mark": null, "paper_group": "practical" },
+    { "paper_number": "6", "name": "Paper 6: Alternative to Practical (Core)", "tier": "Core", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 20, "max_ums_mark": null, "paper_group": "practical" },
+    { "paper_number": "2", "name": "Paper 2: Multiple Choice (Extended)", "tier": "Extended", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 30, "max_ums_mark": null, "paper_group": null },
+    { "paper_number": "4", "name": "Paper 4: Extended Theory", "tier": "Extended", "is_ums": false, "max_raw_mark": 80, "weight_percentage": 50, "max_ums_mark": null, "paper_group": null },
+    { "paper_number": "5", "name": "Paper 5: Practical Test (Extended)", "tier": "Extended", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 20, "max_ums_mark": null, "paper_group": "practical" },
+    { "paper_number": "6", "name": "Paper 6: Alternative to Practical (Extended)", "tier": "Extended", "is_ums": false, "max_raw_mark": 40, "weight_percentage": 20, "max_ums_mark": null, "paper_group": "practical" }
   ]
 }

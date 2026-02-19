@@ -21,7 +21,7 @@ export async function GET(
   const { data: papers, error: papersError } = await supabase
     .from('papers')
     .select(
-      'id, paper_number, name, tier, is_ums, max_raw_mark, max_ums_mark, weight_percentage'
+      'id, paper_number, name, tier, is_ums, max_raw_mark, max_ums_mark, weight_percentage, paper_group'
     )
     .eq('subject_id', subject.id)
     .order('paper_number')

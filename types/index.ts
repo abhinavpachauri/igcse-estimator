@@ -12,6 +12,7 @@ export interface PaperConfig {
   max_raw_mark: number
   max_ums_mark: number | null
   weight_percentage: number
+  paper_group: string | null
 }
 
 export interface SubjectConfig {
@@ -40,6 +41,7 @@ export interface Paper {
   max_raw_mark: number
   max_ums_mark: number | null
   weight_percentage: number
+  paper_group: string | null
 }
 
 export interface Series {

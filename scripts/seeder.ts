@@ -70,6 +70,7 @@ async function seedSubjects(): Promise<Record<string, string>> {
       max_raw_mark:      p.max_raw_mark,
       max_ums_mark:      p.max_ums_mark ?? null,
       weight_percentage: p.weight_percentage,
+      paper_group:       p.paper_group ?? null,
     }))
 
     const { error: papersError } = await supabase.from('papers').insert(paperRows)
