@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, ReactNode } from 'react'
-import type { Subject, Paper, Tier, PaperMarkEntry, SubjectEstimateInput } from '@/types'
+import type { Subject, Paper, Tier, Season, PaperMarkEntry, SubjectEstimateInput } from '@/types'
 
 export interface SelectedSubject {
   subject: Subject
@@ -20,6 +20,8 @@ interface EstimateContextValue {
   togglePaper: (subjectId: string, paper: Paper, allAvailablePapers?: Paper[]) => void
   setMark: (subjectId: string, paperId: string, mark: number) => void
   buildPayload: () => SubjectEstimateInput[]
+  season: Season
+  setSeason: (s: Season) => void
   reset: () => void
 }
 
@@ -28,6 +30,7 @@ const EstimateContext = createContext<EstimateContextValue | null>(null)
 export function EstimateProvider({ children }: { children: ReactNode }) {
   const [step, setStep] = useState(0)
   const [selectedSubjects, setSelectedSubjects] = useState<SelectedSubject[]>([])
+  const [season, setSeason] = useState<Season>('MJ')
 
   function addSubject(subject: Subject) {
     setSelectedSubjects((prev) => {
@@ -108,6 +111,7 @@ export function EstimateProvider({ children }: { children: ReactNode }) {
   function reset() {
     setStep(0)
     setSelectedSubjects([])
+    setSeason('MJ')
   }
 
   return (
@@ -117,7 +121,9 @@ export function EstimateProvider({ children }: { children: ReactNode }) {
         selectedSubjects,
         addSubject, removeSubject,
         setTier, togglePaper, setMark,
-        buildPayload, reset,
+        buildPayload,
+        season, setSeason,
+        reset,
       }}
     >
       {children}

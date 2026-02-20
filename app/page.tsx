@@ -26,7 +26,7 @@ const steps = [
   {
     number: '04',
     title: 'See Your Estimate',
-    description: 'Receive a grade estimate with a confidence range derived from five years of Cambridge boundaries.',
+    description: 'Receive a grade estimate with a confidence range derived from five years of Cambridge boundaries for your chosen exam session.',
   },
 ]
 
@@ -39,7 +39,7 @@ const metrics = [
   {
     value: '5',
     label: 'Years of Data',
-    sub: 'February/March series from 2021 through 2025',
+    sub: 'Feb/March, May/June, and Oct/Nov series — pick the one you\'re sitting',
   },
   {
     value: '100%',
@@ -168,7 +168,7 @@ export default function LandingPage() {
             {[
               { value: '18', label: 'subjects' },
               { value: '5 yrs', label: 'boundary data' },
-              { value: 'FM', label: 'series only' },
+              { value: 'FM·MJ·ON', label: 'all sessions' },
             ].map((stat, i) => (
               <div key={stat.label} className="text-center">
                 {i > 0 && (
@@ -334,19 +334,19 @@ export default function LandingPage() {
               >
                 Five years of boundaries,
                 <br />
-                averaged for precision.
+                weighted for relevance.
               </h2>
               <p
                 className="text-sm leading-relaxed mb-5"
                 style={{ color: '#888', fontFamily: 'var(--font-sans)' }}
               >
-                Each year, Cambridge publishes grade threshold documents for the February/March series. We extract the minimum marks required for each grade across five consecutive years.
+                Cambridge publishes grade threshold documents for three sessions each year — February/March, May/June, and October/November. You pick the session you&apos;re sitting, and we use the last five years of that session&apos;s boundaries.
               </p>
               <p
                 className="text-sm leading-relaxed mb-5"
                 style={{ color: '#888', fontFamily: 'var(--font-sans)' }}
               >
-                Your weighted total is compared against these averaged thresholds — and we show you the historical range so you can see whether a boundary has been stable or volatile year to year.
+                Rather than a simple average, recent years carry more weight — so if boundaries have been shifting, your estimate reflects that trend. We also show you the historical range so you can see how stable or volatile a boundary has been.
               </p>
               <p
                 className="text-sm leading-relaxed"
@@ -366,7 +366,7 @@ export default function LandingPage() {
                 className="text-xs uppercase tracking-widest mb-6"
                 style={{ color: '#555', fontFamily: 'var(--font-sans)' }}
               >
-                A* boundary · Mathematics 0580 Extended · FM series
+                A* boundary · Mathematics 0580 Extended · MJ series (example)
               </div>
               <div className="space-y-4">
                 {boundaryData.map((row, i) => (
@@ -452,7 +452,7 @@ export default function LandingPage() {
                 Threshold
               </div>
               <p className="text-xs leading-relaxed" style={{ color: '#555', fontFamily: 'var(--font-sans)' }}>
-                Cambridge IGCSE grade estimation built on five years of February/March series boundary data.
+                Cambridge IGCSE grade estimation built on five years of boundary data across all three exam sessions.
               </p>
             </div>
 
@@ -501,7 +501,7 @@ export default function LandingPage() {
                     18 IGCSE subjects
                   </div>
                   <div className="text-sm" style={{ color: '#888', fontFamily: 'var(--font-sans)' }}>
-                    FM series 2021–2025
+                    FM · MJ · ON series
                   </div>
                   <div className="text-sm" style={{ color: '#888', fontFamily: 'var(--font-sans)' }}>
                     Cambridge boundaries

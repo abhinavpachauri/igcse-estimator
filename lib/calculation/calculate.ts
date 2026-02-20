@@ -4,6 +4,7 @@ import type {
   EstimateResult,
   GradeThresholdSummary,
   Grade,
+  Season,
 } from '@/types'
 import { averageThresholds } from './average-thresholds'
 import { createClient } from '@/lib/supabase/server'
@@ -15,12 +16,13 @@ const GRADE_ORDER: Grade[] = ['A*', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'U']
  * returns estimated grades with threshold data.
  */
 export async function calculateEstimate(
-  entries: SubjectEstimateInput[]
+  entries: SubjectEstimateInput[],
+  season: Season = 'MJ'
 ): Promise<EstimateResult> {
   const supabase = await createClient()
 
   const results = await Promise.all(
-    entries.map((entry) => calculateSubjectGrade(entry, supabase))
+    entries.map((entry) => calculateSubjectGrade(entry, supabase, season))
   )
 
   return {
@@ -32,7 +34,8 @@ export async function calculateEstimate(
 async function calculateSubjectGrade(
   entry: SubjectEstimateInput,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  supabase: any
+  supabase: any,
+  season: Season = 'MJ'
 ): Promise<SubjectEstimateResult> {
   const { subject_id, subject_code, subject_name, tier_selected, paper_marks } = entry
 
@@ -54,7 +57,7 @@ async function calculateSubjectGrade(
   }
 
   // 2. Fetch averaged historical thresholds for this subject
-  const thresholds = await averageThresholds(supabase, subject_id, tier_selected)
+  const thresholds = await averageThresholds(supabase, subject_id, tier_selected, season)
 
   // 3. Determine estimated grade
   let estimatedGrade: Grade | null = null

@@ -135,6 +135,7 @@ export interface EstimateEntry {
 
 export interface CalculatePayload {
   entries: SubjectEstimateInput[]
+  season: Season
 }
 
 export interface SaveEstimatePayload {

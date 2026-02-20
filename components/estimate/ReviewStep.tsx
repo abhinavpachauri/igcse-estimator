@@ -6,8 +6,14 @@ import { motion } from 'framer-motion'
 import { useEstimate } from './EstimateContext'
 import { Button } from '@/components/ui'
 
+const SESSIONS = [
+  { value: 'FM', label: 'Feb / March' },
+  { value: 'MJ', label: 'May / June' },
+  { value: 'ON', label: 'Oct / Nov' },
+] as const
+
 export function ReviewStep() {
-  const { selectedSubjects, setStep, buildPayload } = useEstimate()
+  const { selectedSubjects, setStep, buildPayload, season, setSeason } = useEstimate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
@@ -21,7 +27,7 @@ export function ReviewStep() {
       const res = await fetch('/api/estimate/calculate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ entries: payload }),
+        body: JSON.stringify({ entries: payload, season }),
       })
 
       if (!res.ok) {
@@ -32,7 +38,7 @@ export function ReviewStep() {
       const result = await res.json()
 
       // Store result in sessionStorage to pass to results page
-      sessionStorage.setItem('estimate_result', JSON.stringify({ result, entries: payload }))
+      sessionStorage.setItem('estimate_result', JSON.stringify({ result, entries: payload, season }))
       router.push('/results')
     } catch (err) {
       setError((err as Error).message)
@@ -49,6 +55,36 @@ export function ReviewStep() {
         <p className="text-sm" style={{ color: '#888', fontFamily: 'var(--font-sans)' }}>
           Check your marks before we calculate your estimated grades.
         </p>
+      </div>
+
+      {/* Session picker */}
+      <div
+        className="rounded-sm border p-5"
+        style={{ background: '#141414', borderColor: '#2A2A2A' }}
+      >
+        <div className="text-xs uppercase tracking-widest mb-3" style={{ color: '#555', fontFamily: 'var(--font-sans)' }}>
+          Which session are you sitting?
+        </div>
+        <div className="flex gap-3">
+          {SESSIONS.map(({ value, label }) => (
+            <button
+              key={value}
+              onClick={() => setSeason(value)}
+              className="flex-1 py-3 text-sm rounded-sm border transition-all duration-200 cursor-pointer font-medium tracking-wide"
+              style={{
+                fontFamily: 'var(--font-sans)',
+                background: season === value
+                  ? 'linear-gradient(135deg, rgba(201,169,110,0.12) 0%, rgba(201,169,110,0.06) 100%)'
+                  : 'rgba(255,255,255,0.02)',
+                borderColor: season === value ? 'rgba(201,169,110,0.5)' : '#2A2A2A',
+                color: season === value ? '#C9A96E' : '#555',
+                boxShadow: season === value ? '0 0 16px rgba(201,169,110,0.08)' : 'none',
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="space-y-4">

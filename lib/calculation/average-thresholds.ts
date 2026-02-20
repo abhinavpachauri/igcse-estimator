@@ -73,7 +73,7 @@ export async function averageThresholds(
     })
   }
 
-  // Compute averages and ranges
+  // Compute recency-weighted averages and ranges
   const summaries: GradeThresholdSummary[] = []
 
   for (const grade of GRADE_ORDER) {
@@ -81,9 +81,16 @@ export async function averageThresholds(
     if (!yearData || yearData.length === 0) continue
 
     const pcts = yearData.map((d) => d.pct)
-    const averaged_pct = Math.round((pcts.reduce((a, b) => a + b, 0) / pcts.length) * 10) / 10
     const min_pct = Math.min(...pcts)
     const max_pct = Math.max(...pcts)
+
+    // Recency weighting: most recent year gets weight n, oldest gets weight 1
+    const sorted = [...yearData].sort((a, b) => b.year - a.year)
+    const n = sorted.length
+    const totalWeight = (n * (n + 1)) / 2
+    const averaged_pct = Math.round(
+      (sorted.reduce((sum, d, i) => sum + d.pct * (n - i), 0) / totalWeight) * 10
+    ) / 10
 
     summaries.push({
       grade,
