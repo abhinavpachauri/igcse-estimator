@@ -1,13 +1,14 @@
 /**
  * scraper.ts
  *
- * Downloads Cambridge IGCSE grade threshold PDFs for the 17 supported subjects
- * across the March series (FM) for 2022–2025.
+ * Downloads Cambridge IGCSE grade threshold PDFs for all supported subjects.
+ *
+ * FM (Feb/March): hardcoded URLs → scripts/raw/{year}/{code}.pdf
+ * MJ (May/June):  dynamic discovery → scripts/raw/mj/{year}/{code}.pdf
+ * ON (Oct/Nov):   dynamic discovery → scripts/raw/on/{year}/{code}.pdf
  *
  * Run with: pnpm pipeline:scrape
- *
- * Note: 0495 (Sociology) has no March series — excluded from the URL map.
- * Files are saved to scripts/raw/{year}/{code}.pdf and skipped if already present.
+ * Files are skipped if already present.
  */
 
 import { writeFileSync, mkdirSync, existsSync } from 'fs'
@@ -16,6 +17,24 @@ import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const RAW_DIR = join(__dirname, 'raw')
+const BASE_URL = 'https://www.cambridgeinternational.org'
+
+const SUPPORTED_CODES = new Set([
+  '0417', '0450', '0452', '0455', '0460', '0470', '0475', '0478',
+  '0495', '0500', '0520', '0549', '0580', '0606', '0610', '0620', '0625', '0653',
+])
+
+const MJ_YEARS = ['2021', '2022', '2023', '2024', '2025']
+const ON_YEARS = ['2021', '2022', '2023', '2024', '2025']
+
+const SEASON_PAGES: Record<string, Record<string, string>> = {
+  mj: Object.fromEntries(MJ_YEARS.map(y => [y,
+    `${BASE_URL}/programmes-and-qualifications/cambridge-upper-secondary/cambridge-igcse/grade-threshold-tables/june-${y}/`
+  ])),
+  on: Object.fromEntries(ON_YEARS.map(y => [y,
+    `${BASE_URL}/programmes-and-qualifications/cambridge-upper-secondary/cambridge-igcse/grade-threshold-tables/november-${y}/`
+  ])),
+}
 
 // All available Cambridge IGCSE March series grade threshold PDFs
 // organised as { year: { syllabusCode: url } }
@@ -97,9 +116,65 @@ async function downloadFile(url: string, dest: string): Promise<void> {
   writeFileSync(dest, Buffer.from(await res.arrayBuffer()))
 }
 
+/** Fetch a Cambridge threshold tables page and return { code → pdfUrl } for our subjects */
+async function discoverPdfUrls(pageUrl: string): Promise<Record<string, string>> {
+  const res = await fetch(pageUrl, { headers: { 'User-Agent': 'Mozilla/5.0' } })
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  const html = await res.text()
+
+  const result: Record<string, string> = {}
+  const linkRegex = /href="(\/Images\/\d+[^"]*\.pdf)"/gi
+  let match: RegExpExecArray | null
+
+  while ((match = linkRegex.exec(html)) !== null) {
+    const path = match[1]
+    for (const code of SUPPORTED_CODES) {
+      if (!result[code] && path.includes(`-${code}-`)) {
+        result[code] = BASE_URL + path
+      }
+    }
+  }
+
+  return result
+}
+
+async function scrapeSeasonYear(season: string, year: string, pageUrl: string) {
+  const seasonDir = join(RAW_DIR, season, year)
+  mkdirSync(seasonDir, { recursive: true })
+
+  let discovered: Record<string, string>
+  try {
+    discovered = await discoverPdfUrls(pageUrl)
+  } catch (err) {
+    console.error(`  ✗  ${season}/${year}: page fetch failed — ${(err as Error).message}`)
+    return
+  }
+
+  if (Object.keys(discovered).length === 0) {
+    console.log(`  ↷  ${season}/${year}: no matching subjects found on page`)
+    return
+  }
+
+  for (const [code, url] of Object.entries(discovered)) {
+    const dest = join(seasonDir, `${code}.pdf`)
+    if (existsSync(dest)) {
+      console.log(`  ↷  ${season}/${year}/${code}.pdf — already present, skipping`)
+      continue
+    }
+    try {
+      await downloadFile(url, dest)
+      console.log(`  ✓  ${season}/${year}/${code}.pdf`)
+    } catch (err) {
+      console.error(`  ✗  ${season}/${year}/${code}: ${(err as Error).message}`)
+    }
+  }
+}
+
 async function main() {
   console.log('Scraping Cambridge IGCSE grade threshold PDFs...\n')
 
+  // FM: hardcoded URLs (already downloaded)
+  console.log('── FM (Feb/March) ──')
   for (const [year, subjects] of Object.entries(THRESHOLD_URLS)) {
     const yearDir = join(RAW_DIR, year)
     mkdirSync(yearDir, { recursive: true })
@@ -116,6 +191,14 @@ async function main() {
       } catch (err) {
         console.error(`  ✗  ${year}/${code}: ${(err as Error).message}`)
       }
+    }
+  }
+
+  // MJ and ON: dynamic discovery from Cambridge's threshold tables pages
+  for (const [season, yearMap] of Object.entries(SEASON_PAGES)) {
+    console.log(`\n── ${season.toUpperCase()} (${season === 'mj' ? 'May/June' : 'Oct/Nov'}) ──`)
+    for (const [year, pageUrl] of Object.entries(yearMap)) {
+      await scrapeSeasonYear(season, year, pageUrl)
     }
   }
 

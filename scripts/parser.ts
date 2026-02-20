@@ -30,7 +30,7 @@ const PARSED_DIR = join(__dirname, 'parsed')
 
 export interface ParsedThreshold {
   syllabus_code: string
-  season:        'FM'
+  season:        'FM' | 'MJ' | 'ON'
   year:          number
   tier:          'Core' | 'Extended' | null
   option_code:   string
@@ -208,6 +208,7 @@ function selectThresholds(
   code:          string,
   year:          number,
   externalMarks: MaxMarkByTier | null,
+  season:        'FM' | 'MJ' | 'ON' = 'FM',
 ): ParsedThreshold[] {
   if (options.length === 0) return []
 
@@ -217,7 +218,7 @@ function selectThresholds(
     maxMark: number,
   ): ParsedThreshold => ({
     syllabus_code: code,
-    season:        'FM',
+    season,
     year,
     tier,
     option_code:   opt.code,
@@ -273,6 +274,69 @@ function selectThresholds(
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 
+interface ScanTarget {
+  label:  string
+  dir:    string
+  season: 'FM' | 'MJ' | 'ON'
+}
+
+async function parsePdfsInDir(
+  target:        ScanTarget,
+  allThresholds: ParsedThreshold[],
+  allComponents: ParsedComponent[],
+) {
+  if (!existsSync(target.dir)) return
+
+  const yearDirs = readdirSync(target.dir).filter(d => /^\d{4}$/.test(d)).sort()
+  if (yearDirs.length === 0) return
+
+  for (const yearDir of yearDirs) {
+    const year     = parseInt(yearDir, 10)
+    const fullPath = join(target.dir, yearDir)
+    const pdfs     = readdirSync(fullPath).filter(f => f.endsWith('.pdf'))
+
+    console.log(`\nParsing ${target.label}/${yearDir} (${pdfs.length} PDFs)...`)
+
+    for (const pdfFile of pdfs) {
+      const code     = pdfFile.replace('.pdf', '')
+      const filePath = join(fullPath, pdfFile)
+
+      try {
+        const buffer    = readFileSync(filePath)
+        const { text }  = await pdfParse(buffer, { max: 1 })
+
+        // Components (only from FM to avoid duplicates)
+        if (target.season === 'FM') {
+          for (const c of parseComponentTable(text)) {
+            const raw      = c.code.replace(/^0+/, '')
+            const paperNum = raw.charAt(0) || c.code.charAt(0)
+            allComponents.push({ syllabus_code: code, year, component_code: c.code, paper_number: paperNum, max_mark: c.maxMark })
+          }
+        }
+
+        // Overall thresholds
+        const overallIdx    = text.toLowerCase().indexOf('overall threshold')
+        const hasMaxMarkCol = overallIdx !== -1 && /maximum\s+mark\s+after\s+weighting/i.test(text.slice(overallIdx))
+        const externalMarks = hasMaxMarkCol ? null : extract2022MaxMarks(text)
+
+        const rawOptions = parseOverallOptions(text)
+        const thresholds = selectThresholds(rawOptions, code, year, externalMarks, target.season)
+
+        if (thresholds.length === 0) {
+          console.warn(`  ⚠  ${target.label}/${yearDir}/${code}.pdf — no overall thresholds found`)
+        } else {
+          const summary = thresholds.map(t => t.tier ?? 'no-tier').join('+')
+          const marks   = thresholds.map(t => `${t.max_mark}`).join('/')
+          console.log(`  ✓  ${code} (${summary}) max=${marks}`)
+          allThresholds.push(...thresholds)
+        }
+      } catch (err) {
+        console.error(`  ✗  ${target.label}/${yearDir}/${code}.pdf — ${(err as Error).message}`)
+      }
+    }
+  }
+}
+
 async function main() {
   mkdirSync(PARSED_DIR, { recursive: true })
 
@@ -281,57 +345,22 @@ async function main() {
     return
   }
 
-  const yearDirs = readdirSync(RAW_DIR).filter(d => /^\d{4}$/.test(d)).sort()
-  if (yearDirs.length === 0) {
-    console.log('No year directories in scripts/raw/. Run pnpm pipeline:scrape first.')
-    return
-  }
-
   const allThresholds: ParsedThreshold[] = []
   const allComponents: ParsedComponent[] = []
 
-  for (const yearDir of yearDirs) {
-    const year     = parseInt(yearDir, 10)
-    const fullPath = join(RAW_DIR, yearDir)
-    const pdfs     = readdirSync(fullPath).filter(f => f.endsWith('.pdf'))
+  const targets: ScanTarget[] = [
+    { label: 'fm', dir: RAW_DIR,              season: 'FM' },
+    { label: 'mj', dir: join(RAW_DIR, 'mj'),  season: 'MJ' },
+    { label: 'on', dir: join(RAW_DIR, 'on'),  season: 'ON' },
+  ]
 
-    console.log(`\nParsing ${yearDir} (${pdfs.length} PDFs)...`)
+  for (const target of targets) {
+    await parsePdfsInDir(target, allThresholds, allComponents)
+  }
 
-    for (const pdfFile of pdfs) {
-      const code     = pdfFile.replace('.pdf', '')
-      const filePath = join(fullPath, pdfFile)
-
-      try {
-        const buffer  = readFileSync(filePath)
-        const { text } = await pdfParse(buffer, { max: 1 })
-
-        // Components
-        for (const c of parseComponentTable(text)) {
-          const raw     = c.code.replace(/^0+/, '') // strip leading zeros
-          const paperNum = raw.charAt(0) || c.code.charAt(0)
-          allComponents.push({ syllabus_code: code, year, component_code: c.code, paper_number: paperNum, max_mark: c.maxMark })
-        }
-
-        // Overall thresholds
-        const overallIdx     = text.toLowerCase().indexOf('overall threshold')
-        const hasMaxMarkCol  = overallIdx !== -1 && /maximum\s+mark\s+after\s+weighting/i.test(text.slice(overallIdx))
-        const externalMarks  = hasMaxMarkCol ? null : extract2022MaxMarks(text)
-
-        const rawOptions  = parseOverallOptions(text)
-        const thresholds  = selectThresholds(rawOptions, code, year, externalMarks)
-
-        if (thresholds.length === 0) {
-          console.warn(`  ⚠  ${yearDir}/${code}.pdf — no overall thresholds found`)
-        } else {
-          const summary = thresholds.map(t => t.tier ?? 'no-tier').join('+')
-          const marks   = thresholds.map(t => `${t.max_mark}`).join('/')
-          console.log(`  ✓  ${code} (${summary}) max=${marks} — ${rawOptions.length} option(s)`)
-          allThresholds.push(...thresholds)
-        }
-      } catch (err) {
-        console.error(`  ✗  ${yearDir}/${code}.pdf — ${(err as Error).message}`)
-      }
-    }
+  if (allThresholds.length === 0) {
+    console.log('No PDFs found. Run pnpm pipeline:scrape first.')
+    return
   }
 
   writeFileSync(join(PARSED_DIR, 'thresholds.json'), JSON.stringify(allThresholds, null, 2))
@@ -341,15 +370,11 @@ async function main() {
   console.log(`Overall thresholds: ${allThresholds.length} rows`)
   console.log(`Component maxima:   ${allComponents.length} rows`)
 
-  const bySyllabus: Record<string, number> = {}
+  const bySeason: Record<string, number> = {}
   for (const t of allThresholds) {
-    const key = t.tier ? `${t.syllabus_code}:${t.tier}` : t.syllabus_code
-    bySyllabus[key] = (bySyllabus[key] ?? 0) + 1
+    bySeason[t.season] = (bySeason[t.season] ?? 0) + 1
   }
-  console.log('\nYears of data per subject/tier:')
-  for (const [key, count] of Object.entries(bySyllabus).sort()) {
-    console.log(`  ${key}: ${count}`)
-  }
+  console.log('\nRows by season:', bySeason)
 }
 
 main().catch(console.error)

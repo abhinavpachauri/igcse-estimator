@@ -17,7 +17,7 @@ const GRADE_ORDER: Grade[] = ['A*', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'U']
  */
 export async function calculateEstimate(
   entries: SubjectEstimateInput[],
-  season: Season = 'FM'
+  season: Season = 'MJ'
 ): Promise<EstimateResult> {
   const supabase = await createClient()
 
@@ -35,7 +35,7 @@ async function calculateSubjectGrade(
   entry: SubjectEstimateInput,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   supabase: any,
-  season: Season = 'FM'
+  season: Season = 'MJ'
 ): Promise<SubjectEstimateResult> {
   const { subject_id, subject_code, subject_name, tier_selected, paper_marks } = entry
 

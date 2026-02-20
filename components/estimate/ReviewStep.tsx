@@ -8,8 +8,8 @@ import { Button } from '@/components/ui'
 
 const SESSIONS = [
   { value: 'FM', label: 'Feb / March', available: true },
-  { value: 'MJ', label: 'May / June', available: false },
-  { value: 'ON', label: 'Oct / Nov', available: false },
+  { value: 'MJ', label: 'May / June', available: true },
+  { value: 'ON', label: 'Oct / Nov', available: true },
 ] as const
 
 export function ReviewStep() {
