@@ -7,9 +7,9 @@ import { useEstimate } from './EstimateContext'
 import { Button } from '@/components/ui'
 
 const SESSIONS = [
-  { value: 'FM', label: 'Feb / March' },
-  { value: 'MJ', label: 'May / June' },
-  { value: 'ON', label: 'Oct / Nov' },
+  { value: 'FM', label: 'Feb / March', available: true },
+  { value: 'MJ', label: 'May / June', available: false },
+  { value: 'ON', label: 'Oct / Nov', available: false },
 ] as const
 
 export function ReviewStep() {
@@ -66,22 +66,29 @@ export function ReviewStep() {
           Which session are you sitting?
         </div>
         <div className="flex gap-3">
-          {SESSIONS.map(({ value, label }) => (
+          {SESSIONS.map(({ value, label, available }) => (
             <button
               key={value}
-              onClick={() => setSeason(value)}
-              className="flex-1 py-3 text-sm rounded-sm border transition-all duration-200 cursor-pointer font-medium tracking-wide"
+              onClick={() => available && setSeason(value)}
+              disabled={!available}
+              className="flex-1 py-3 text-sm rounded-sm border transition-all duration-200 font-medium tracking-wide relative"
               style={{
                 fontFamily: 'var(--font-sans)',
+                cursor: available ? 'pointer' : 'not-allowed',
                 background: season === value
                   ? 'linear-gradient(135deg, rgba(201,169,110,0.12) 0%, rgba(201,169,110,0.06) 100%)'
                   : 'rgba(255,255,255,0.02)',
                 borderColor: season === value ? 'rgba(201,169,110,0.5)' : '#2A2A2A',
-                color: season === value ? '#C9A96E' : '#555',
+                color: season === value ? '#C9A96E' : available ? '#555' : '#333',
                 boxShadow: season === value ? '0 0 16px rgba(201,169,110,0.08)' : 'none',
               }}
             >
               {label}
+              {!available && (
+                <span className="block text-xs mt-0.5" style={{ color: '#2A2A2A', fontFamily: 'var(--font-sans)' }}>
+                  coming soon
+                </span>
+              )}
             </button>
           ))}
         </div>

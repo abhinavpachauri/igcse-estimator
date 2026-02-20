@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const result = await calculateEstimate(body.entries, body.season ?? 'MJ')
+    const result = await calculateEstimate(body.entries, body.season ?? 'FM')
     return NextResponse.json(result)
   } catch (err) {
     console.error('[calculate]', err)

@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.cambridgeinternational.org)",
+      "WebFetch(domain:www.scribd.com)",
+      "WebFetch(domain:www.smartexamresources.com)",
+      "WebFetch(domain:pastpapers.co)",
+      "WebFetch(domain:www.whatdotheyknow.com)",
+      "WebFetch(domain:theigclub.com)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(pnpm pipeline:seed:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(vercel ls:*)",
+      "Bash(grep:*)"
+    ]
+  }
+}

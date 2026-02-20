@@ -30,7 +30,7 @@ const EstimateContext = createContext<EstimateContextValue | null>(null)
 export function EstimateProvider({ children }: { children: ReactNode }) {
   const [step, setStep] = useState(0)
   const [selectedSubjects, setSelectedSubjects] = useState<SelectedSubject[]>([])
-  const [season, setSeason] = useState<Season>('MJ')
+  const [season, setSeason] = useState<Season>('FM')
 
   function addSubject(subject: Subject) {
     setSelectedSubjects((prev) => {
