@@ -3,9 +3,9 @@ import type { Grade, GradeThresholdSummary, Tier } from '@/types'
 const GRADE_ORDER: Grade[] = ['A*', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
 
 /**
- * Fetches subject-level overall thresholds from the DB for the past N FM series,
+ * Fetches subject-level overall thresholds from the DB for the past N series of a given season,
  * converts each year's threshold mark to a percentage of the overall max mark,
- * then returns the mean + range per grade.
+ * then returns the recency-weighted mean + range per grade.
  */
 export async function averageThresholds(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
