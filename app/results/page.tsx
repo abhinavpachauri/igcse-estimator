@@ -158,7 +158,7 @@ export default function ResultsPage() {
             Grade Estimate
           </div>
           <h1 className="font-display text-4xl md:text-5xl font-light mb-6" style={{ color: '#F5F5F0' }}>
-            {result.entries.length} subject{result.entries.length !== 1 ? 's' : ''} estimated
+            <span style={{ fontFamily: 'var(--font-sans)' }}>{result.entries.length}</span> subject{result.entries.length !== 1 ? 's' : ''} estimated
           </h1>
 
           {/* Grade breakdown bar */}
